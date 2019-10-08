@@ -45,6 +45,7 @@ Is also very important to mention that this LZ approach is opinionated and is en
 Code is structured around two concepts `Module` and `Composition`:
 
 #### Module
+
 A module is a group of connected resources inherently related to the CLZ. Each Module:
 
 1. Glue different Terraform resources (could be one or multiple)
@@ -54,10 +55,10 @@ A module is a group of connected resources inherently related to the CLZ. Each M
 
 #### Composition
 
-Composition is a collection of modules that describes a logical part of the CLZ product. Each composition:
+Composition is a collection of modules that describes a logical part of the CLZ product. Each composition is:
 
-1. Is either global or region specific
-2. Is executed once in case of the global or multiple times in case of regional
+1. Either global or region specific
+2. Executed once in case of the global or multiple times in case of regional
 3. Requires at least a persistent variables file in case of global based compositions and an additional region specific variables for regional compositions
 
 #### File content
@@ -72,10 +73,63 @@ Below there is a brief description of common files content separated by domain:
 * Composition
   * `data.tf`:
   * `main.tf`
-  * `provider.tf`
+  * `providers.tf`
   * `variables.tf`
 
 * Module
   * `main.tf`
   * `outputs.tf`
   * `variables.tf`
+
+#### State file
+
+This solution is assuming that the new free [Terraform Cloud Remote State Management](https://www.terraform.io/docs/enterprise/free/) service provided by Hashicorp is used. This is not mandatory by is strongly suggested to use remote state files and never keep it locally.
+
+#### Workspace to organize environments
+
+Following Hashicorp's best practices are following the rule of:
+
+`One Workspace Per Environment Per Terraform Configuration`
+
+Which translates to use a workspace name that reflects `component` and `environment` name.
+
+i.e.: shared-services-dev, shared-services-stage, shared-services-prod
+
+#### Naming convention
+
+Naming convention is one of the main pillars of code consistency in Terraform, using the following rules will make Terraform code clean, consistent and easy to read as well as the final infrastructure objects easily identifiable.
+
+##### Files
+
+Filesystem files are following the next rules:
+
+* Directories are named singular
+* Files are named plural
+* Only use lower case letters and numbers
+* Use the underscore symbol (_) in between words
+* File names should be descriptive, such as:
+  * `data.tf` to define data sources
+  * `resources.tf` to define resources
+  * `variables.tf` to define variables
+  * `providers.tf` to define providers
+  * `outputs.tf` to define outputs
+
+##### Code
+
+* Avoid using defaults on variables, their values should be either explicitly specified or computed
+* Do not repeat resource type in resource name:
+
+  ```yaml
+  resource "aws_vpc" "vpc" <- WRONG
+  ```
+
+  instead use a domain descriptive name such as `public`, `private` or `this`
+
+  ```yaml
+  resource "aws_vpc" "this" <- RIGHT
+  ```
+
+* Use singular names for resources
+* `tags` is always present at the bottom of the resource definition
+* `count` and `for_each` are always located at the beginning of the resource definition.
+* Use the same variable names, description and default as defined in "Argument Reference" section from the official documentation for the resource you are working on.
