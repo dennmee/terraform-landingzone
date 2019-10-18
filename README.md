@@ -72,12 +72,12 @@ Below there is a brief description of common files content separated by domain:
 
 * Composition
   * `data.tf`:
-  * `main.tf`
+  * `resources.tf`
   * `providers.tf`
   * `variables.tf`
 
 * Module
-  * `main.tf`
+  * `resources.tf`
   * `outputs.tf`
   * `variables.tf`
 
@@ -99,6 +99,47 @@ i.e.: shared-services-dev, shared-services-stage, shared-services-prod
 
 Naming convention is one of the main pillars of code consistency in Terraform, using the following rules will make Terraform code clean, consistent and easy to read as well as the final infrastructure objects easily identifiable.
 
+##### Directories
+
+The previously mentioned [structure](#structure) is used as main directory tree. We will differentiate what provider is used in every case as well as creating an additional organization layer for modules:
+
+```text
+├── composition
+│   └── <PROVIDER_NAME>
+│       └── <COMPOSITION_NAME>
+└── module
+    └── <PROVIDER_NAME>
+        └── <PRODUCT_NAME>
+            └── <PROVIDER_NAME>
+```
+
+Here's a directory example based on AWS only solution:
+
+```text
+├── composition
+│   └── aws
+|       ├── backup_solution
+|       ├── shared_services
+│       └── 2_tier_app
+└── module
+    └── aws
+        ├── compute
+        │   ├── ec2
+        |   └── lambda
+        ├── database
+        |   ├── rds
+        |   └── dynamodb
+        └── identity
+            ├── iam
+            └── certificate_manager
+```
+
+Here is the list of services for the three major Cloud providers:
+
+* [AWS](https://aws.amazon.com/products/)
+* [Google Cloud](https://cloud.google.com/products/)
+* [Azure](https://azure.microsoft.com/en-us/services/)
+
 ##### Files
 
 Filesystem files are following the next rules:
@@ -109,14 +150,17 @@ Filesystem files are following the next rules:
 * Use the underscore symbol (_) in between words
 * File names should be descriptive, such as:
   * `data.tf` to define data sources
+  * `locals.tf` to define local variables
+  * `modules.tf` to define modules
   * `resources.tf` to define resources
   * `variables.tf` to define variables
   * `providers.tf` to define providers
   * `outputs.tf` to define outputs
+  * `values.tfvars` environment variables values
 
 ##### Code
 
-* Avoid using defaults on variables, their values should be either explicitly specified or computed
+* Variables should always have `type` and `description` defined but never defaults, their values should be either explicitly specified or computed
 * Do not repeat resource type in resource name:
 
   ```yaml
@@ -133,3 +177,8 @@ Filesystem files are following the next rules:
 * `tags` is always present at the bottom of the resource definition
 * `count` and `for_each` are always located at the beginning of the resource definition.
 * Use the same variable names, description and default as defined in "Argument Reference" section from the official documentation for the resource you are working on.
+
+## Terraform documentation links
+
+[Terraform settings](https://www.terraform.io/docs/configuration/terraform.html)
+[AWS Provider](https://www.terraform.io/docs/providers/aws/)
