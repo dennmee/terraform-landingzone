@@ -66,9 +66,9 @@ Composition is a collection of modules that describes a logical part of the CLZ 
 Below there is a brief description of common files content separated by domain:
 
 * Environments
-  * prod
-  * stg
-  * dev
+  * prod (production)
+  * stg (staging)
+  * dev (development)
 
 * Composition
   * `data.tf`:
@@ -85,6 +85,8 @@ Below there is a brief description of common files content separated by domain:
 
 This solution is assuming that the new free [Terraform Cloud Remote State Management](https://www.terraform.io/docs/enterprise/free/) service provided by Hashicorp is used. This is not mandatory by is strongly suggested to use remote state files and never keep it locally.
 
+An additional solution using AWS S3 and Dynamo DB is also possible and will be added.
+
 #### Workspace to organize environments
 
 Following Hashicorp's best practices are following the rule of:
@@ -93,7 +95,7 @@ Following Hashicorp's best practices are following the rule of:
 
 Which translates to use a workspace name that reflects `component` and `environment` name.
 
-i.e.: shared-services-dev, shared-services-stage, shared-services-prod
+i.e.: shared-services-dev, shared-services-stg, shared-services-prod
 
 #### Naming convention
 
@@ -177,6 +179,20 @@ Filesystem files are following the next rules:
 * `tags` is always present at the bottom of the resource definition
 * `count` and `for_each` are always located at the beginning of the resource definition.
 * Use the same variable names, description and default as defined in "Argument Reference" section from the official documentation for the resource you are working on.
+
+## How it works
+
+### Terraform init
+
+```shell
+terraform init -backend-config=backend.config
+```
+
+### Terraform plan/apply
+
+```shell
+terraform plan
+```
 
 ## Terraform documentation links
 
