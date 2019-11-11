@@ -191,7 +191,7 @@ terraform init -backend-config=backend.config
 ### Terraform plan/apply
 
 ```shell
-terraform plan
+terraform plan -var-file=values.local.tfvars
 ```
 
 ## Terraform documentation links
