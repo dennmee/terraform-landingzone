@@ -23,11 +23,6 @@ variable "organizations_prod_account_id" {
   description = "The Organizations Account ID for the Production account."
 }
 
-variable "organizations_ou_web_id" {
-  type        = string
-  description = "The Organization Unit ID for the Web Team."
-}
-
 variable "vpc_tags" {
   type        = map(string)
   description = "A mapping of tags to assign to vpc resource."

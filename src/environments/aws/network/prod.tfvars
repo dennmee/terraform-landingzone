@@ -1,11 +1,11 @@
 ########################################################
 # Organization
 ########################################################
-organizations_shared_account_id = "055909071318"
-organizations_dev_account_id    = "274277384407"
-organizations_stg_account_id    = "452657071542"
-organizations_prod_account_id   = "673013270333"
-organizations_ou_web_id         = "ou-poif-0h4nf6xp"
+organizations_shared_account_id = ""
+organizations_dev_account_id    = ""
+organizations_stg_account_id    = ""
+organizations_prod_account_id   = ""
+organizations_ou_web_id         = ""
 
 ########################################################
 # Global
