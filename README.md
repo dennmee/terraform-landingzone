@@ -182,6 +182,16 @@ Filesystem files are following the next rules:
 
 ## How it works
 
+### Prerequisites
+
+Before using Terraform please make sure you have the following installed and set up:
+
+- [Terraform (> 0.12)](https://www.terraform.io/downloads.html)
+- [terraform-docs](https://github.com/segmentio/terraform-docs)
+- [tflint](https://github.com/terraform-linters/tflint)
+- [aws-cli](https://wiki.muc.baimos.com/display/Web/AWS+command-line+interface)
+- [awsume](https://awsu.me/)
+
 ### Terraform init
 
 ```shell
