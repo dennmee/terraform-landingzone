@@ -5,6 +5,6 @@ locals {
     "cloudtrail.amazonaws.com",
     "config.amazonaws.com",
   ]
-  organization-enabled_policy_types = ["SERVICE_CONTROL_POLICY"]
+  organization-enabled_policy_types = ["SERVICE_CONTROL_POLICY", "TAG_POLICY"]
   organization-feature_set          = "ALL"
 }
