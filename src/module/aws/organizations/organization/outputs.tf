@@ -27,3 +27,13 @@ output "accounts" {
   description = "List of organization accounts including the master account."
   value       = aws_organizations_organization.this.accounts
 }
+
+output "non_master_accounts" {
+  description = "List of organization accounts excluding the master account."
+  value       = aws_organizations_organization.this.non_master_accounts
+}
+
+output "roots" {
+  description = "List of organization roots."
+  value       = aws_organizations_organization.this.roots
+}
