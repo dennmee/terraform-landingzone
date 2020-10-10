@@ -1,5 +1,20 @@
-# Created by https://www.gitignore.io/api/macos,terraform
-# Edit at https://www.gitignore.io/?templates=macos,terraform
+# Created by https://www.toptal.com/developers/gitignore/api/macos,vim,vscode,terraform,linux,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,vim,vscode,terraform,linux,windows
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
 
 ### macOS ###
 # General
@@ -29,40 +44,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
-### Code ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-### Vim ###
-# Swap
-[._]*.s[a-v][a-z]
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
-
-# Session
-Session.vim
-Sessionx.vim
-
-# Temporary
-.netrwhist
-*~
-# Auto-generated tag files
-tags
-# Persistent undo
-[._]*.un~
-
 ### Terraform ###
 # Local .terraform directories
 **/.terraform/*
-
-# .tfvars files
-*.tfvars
 
 # .tfstate files
 *.tfstate
@@ -78,6 +62,9 @@ crash.log
 # example.tfvars
 *.local.*
 
+# Ignore Backend config
+backend.config
+
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
 override.tf
@@ -91,4 +78,58 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 
-# End of https://www.gitignore.io/api/macos,terraform
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/macos,vim,vscode,terraform,linux,windows
